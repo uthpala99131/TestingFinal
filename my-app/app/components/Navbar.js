@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import NavLink from "./NavLink";
 import MenuOverlay from "./MenuOverlay";
+import SignUpButton from "./SignUpButton";
 
 const navLinks = [
   { title: "HOME", path: "/" },
@@ -49,34 +50,13 @@ const Navbar = () => {
           ))}
 
           {/* Sign In / Sign Up Buttons */}
-          <Link
-            href="/login"
-            className="text-sm font-medium text-white hover:text-red-500"
-          >
-            Sign In
-          </Link>
-          <Link
-            href="/register"
-            className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded hover:bg-red-700"
-          >
-            Sign Up
-          </Link>
+          <SignUpButton/>
         </div>
       </div>
 
       {navbarOpen && (
         <MenuOverlay links={navLinks}>
-          <div className="flex flex-col mt-4 space-y-3">
-            <Link href="/login" className="text-white hover:text-red-500">
-              Sign In
-            </Link>
-            <Link
-              href="/register"
-              className="px-4 py-2 text-center text-white bg-red-600 rounded hover:bg-red-700"
-            >
-              Sign Up
-            </Link>
-          </div>
+          <SignUpButton/>
         </MenuOverlay>
       )}
     </nav>
