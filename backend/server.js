@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 // Routes
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
+app.use('/api/bookings', bookingRoutes);
 
 // DB Connection
 mongoose.connect(process.env.MONGO_URI)
