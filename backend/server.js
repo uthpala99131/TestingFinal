@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(cookieParser());
-
+//app.use('/api', dashboardRoutes); // for protect dashboard routes
 
 // Routes
 const authRoutes = require('./routes/authRoutes');
