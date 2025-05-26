@@ -163,10 +163,10 @@ const UserAccountButton = () => {
                 <span>Edit Profile</span>
               </button>
 
-              <Link href="/trips" passHref>
+              <Link href="/bookings" passHref>
                 <button className="flex items-center gap-2 px-4 py-2 text-red-800 w-full text-left hover:bg-red-50">
                   <Map size={16} />
-                  <span>My Trips</span>
+                  <span>My Bookings</span>
                 </button>
               </Link>
 

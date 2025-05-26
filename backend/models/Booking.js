@@ -16,7 +16,6 @@ const BookingSchema = new mongoose.Schema({
   serviceType: {
     type: String,
     required: [true, 'Service type is required'],
-    enum: ['Oil Change', 'Tire Rotation', 'Brake Service', 'Engine Check', 'Other'],
     default: 'Oil Change'
   },
   status: {

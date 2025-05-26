@@ -1,11 +1,12 @@
-// components/ServiceCard.jsx
-export default function ServiceCard({ title, desc }) {
+// components/ServiceCard.jsx (or .js)
+export default function ServiceCard({ title, desc, onClick }) {
   return (
-    <div className="text-white transition-all duration-300 border border-red-600 rounded-lg shadow-lg bg-black/80 hover:scale-105 hover:shadow-xl">
-      <div className="p-6">
-        <h3 className="mb-4 text-xl font-semibold text-red-600">{title}</h3>
-        <p className="text-sm text-gray-300">{desc}</p>
-      </div>
+    <div
+      onClick={onClick}
+      className="p-6 bg-gray-900 rounded-lg shadow-md cursor-pointer hover:bg-gray-800 transition"
+    >
+      <h3 className="text-xl font-bold text-red-500 mb-2">{title}</h3>
+      <p className="text-white">{desc}</p>
     </div>
   );
 }
