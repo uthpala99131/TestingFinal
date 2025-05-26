@@ -6,6 +6,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
 
@@ -16,7 +17,10 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(cookieParser());
 
+
 // Routes
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
 
 // DB Connection
 mongoose.connect(process.env.MONGO_URI)

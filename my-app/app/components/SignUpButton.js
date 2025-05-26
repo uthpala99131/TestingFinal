@@ -4,51 +4,111 @@ import { UserPlus, LogOut, User, Settings, Map, ChevronDown, Eye, EyeOff } from 
 import Link from "next/link";
 
 const UserAccountButton = () => {
-  const [user, setUser] = useState(null); // null means not logged in
+  const [user, setUser] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLogin, setIsLogin] = useState(true); // true for login, false for signup
+  const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const dropdownRef = useRef(null);
+
+  // Check for user in localStorage on component mount
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
-    setIsLogin(true); // Reset to login form when closing
+    setIsLogin(true);
     setShowPassword(false);
     setShowConfirmPassword(false);
+    setError(null);
   };
 
   const switchToSignup = () => setIsLogin(false);
   const switchToLogin = () => setIsLogin(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
+
     const formData = new FormData(e.target);
-    
-    if (isLogin) {
-      // Mock login: replace with real auth logic
-      const mockUser = { 
-        username: formData.get('username') || formData.get('email').split('@')[0], 
-        email: formData.get('email') 
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const username = formData.get('username');
+    const confirmPassword = formData.get('confirmPassword');
+
+    try {
+      if (!isLogin && password !== confirmPassword) {
+        throw new Error("Passwords don't match");
+      }
+
+      const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
+      const body = isLogin 
+        ? { email, password }
+        : { name: username, email, password, vehicle: "None" }; // Add vehicle if needed
+
+      const response = await fetch(`http://localhost:5000${endpoint}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Important for cookies
+        body: JSON.stringify(body),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
+
+      // Save user data (without password) to state and localStorage
+      const userData = {
+        username: data.data.user.name,
+        email: data.data.user.email,
+        type: data.data.user.type,
+        token: data.token
       };
-      setUser(mockUser);
-    } else {
-      // Mock signup: replace with real auth logic
-      const mockUser = { 
-        username: formData.get('username'), 
-        email: formData.get('email') 
-      };
-      setUser(mockUser);
+
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+      closeModal();
+
+      if (userData.type === 'admin') {
+      window.location.href = '/dashboard';
     }
-    closeModal();
+    
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleLogout = () => {
-    setUser(null);
-    setIsDropdownOpen(false);
+  const handleLogout = async () => {
+    try {
+      // If you have a logout endpoint, call it here
+      // await fetch('http://localhost:5000/api/auth/logout', {
+      //   method: 'POST',
+      //   credentials: 'include'
+      // });
+
+      // Clear user data
+      setUser(null);
+      localStorage.removeItem('user');
+      setIsDropdownOpen(false);
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
   };
 
   // Close dropdown when clicking outside
@@ -150,6 +210,12 @@ const UserAccountButton = () => {
               </p>
             </div>
 
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-4">
               {!isLogin && (
                 <div>
@@ -168,12 +234,12 @@ const UserAccountButton = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {isLogin ? "Email or Username" : "Email"}
+                  Email
                 </label>
                 <input
-                  type={isLogin ? "text" : "email"}
-                  name={isLogin ? "username" : "email"}
-                  placeholder={isLogin ? "Enter email or username" : "Enter your email"}
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
                   required
                 />
@@ -190,6 +256,7 @@ const UserAccountButton = () => {
                     placeholder="Enter your password"
                     className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
                     required
+                    minLength="6"
                   />
                   <button
                     type="button"
@@ -213,6 +280,7 @@ const UserAccountButton = () => {
                       placeholder="Confirm your password"
                       className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors"
                       required
+                      minLength="6"
                     />
                     <button
                       type="button"
@@ -238,9 +306,20 @@ const UserAccountButton = () => {
 
               <button
                 type="submit"
-                className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-medium shadow-lg"
+                className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-medium shadow-lg flex items-center justify-center"
+                disabled={loading}
               >
-                {isLogin ? "Sign In" : "Create Account"}
+                {loading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  isLogin ? "Sign In" : "Create Account"
+                )}
               </button>
             </form>
 
