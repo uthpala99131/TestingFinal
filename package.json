@@ -15,6 +15,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@google/genai": "^1.0.1",
     "backend": "file:",
     "bcryptjs": "^3.0.2",
     "concurrently": "^9.1.2",
@@ -26,7 +27,8 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

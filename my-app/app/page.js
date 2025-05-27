@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { motion } from "framer-motion";
 import Image from "next/image";
+import ChatBot from './components/ChatBot';
 
 export default function Home() {
   return (
@@ -81,6 +82,7 @@ export default function Home() {
           whileTap={{ scale: 0.9 }}
         />
       </motion.div>
+      <ChatBot/>
     </section>
     </div>
   );
