@@ -155,7 +155,7 @@ const JobPage = () => {
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
                           <span className="text-gray-600">Service Fee:</span>
-                          <span className="font-semibold text-green-600">₹{job.price || '0'}</span>
+                          <span className="font-semibold text-green-600">Rs.{job.price || '0'}</span>
                         </div>
                         {job.serviceDate && (
                           <div className="flex justify-between items-center">
@@ -181,7 +181,7 @@ const JobPage = () => {
                             <p className="text-gray-900 font-medium">🔧 {job.sparePartName}</p>
                           )}
                           {job.sparePartPrice && (
-                            <p className="text-orange-700 font-semibold">Cost: ₹{job.sparePartPrice}</p>
+                            <p className="text-orange-700 font-semibold">Cost: Rs.{job.sparePartPrice}</p>
                           )}
                         </div>
                       </div>
@@ -199,7 +199,7 @@ const JobPage = () => {
                             <p className="text-gray-600 text-sm">📞 {job.technicianPhone}</p>
                           )}
                           {job.technicianSalary && (
-                            <p className="text-blue-700 text-sm">Salary: ₹{job.technicianSalary}</p>
+                            <p className="text-blue-700 text-sm">Salary: Rs.{job.technicianSalary}</p>
                           )}
                         </div>
                       </div>
@@ -210,7 +210,7 @@ const JobPage = () => {
                       <div className="mb-4">
                         <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Service Notes</h3>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-                          <p className="text-gray-700 text-sm italic">"{job.technicianReview}"</p>
+                          <p className="text-gray-700 text-sm italic">&quot;{job.technicianReview}&quot;</p>
                         </div>
                       </div>
                     )}
@@ -220,7 +220,7 @@ const JobPage = () => {
                       <div className="flex justify-between items-center">
                         <span className="text-lg font-semibold text-gray-700">Total Cost:</span>
                         <span className="text-xl font-bold text-blue-600">
-                          ₹{(parseFloat(job.price || 0) + parseFloat(job.sparePartPrice || 0)).toFixed(2)}
+                          Rs.{(parseFloat(job.price || 0) + parseFloat(job.sparePartPrice || 0)).toFixed(2)}
                         </span>
                       </div>
                     </div>

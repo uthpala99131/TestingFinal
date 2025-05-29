@@ -11,7 +11,7 @@ const BookingsTable = () => {
               <th className="px-4 py-3 text-left">Vehicle</th>
               <th className="px-4 py-3 text-left">Service</th>
               <th className="px-4 py-3 text-left">Date</th>
-              <th className="px-4 py-3 text-left">Status</th>
+             
               <th className="px-4 py-3 text-left">Actions</th>
             </tr>
           </thead>

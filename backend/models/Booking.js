@@ -18,11 +18,7 @@ const BookingSchema = new mongoose.Schema({
     required: [true, 'Service type is required'],
     default: 'Oil Change'
   },
-  status: {
-    type: String,
-    enum: ['Pending', 'In Progress', 'Completed', 'Cancelled'],
-    default: 'Pending'
-  },
+
   price: {
     type: Number,
     required: [true, 'Price is required'],

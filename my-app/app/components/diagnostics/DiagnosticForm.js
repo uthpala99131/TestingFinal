@@ -1,5 +1,43 @@
 'use client'
-import { useState } from 'react'
+import { useState } from 'react' 
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    // Initialize the Gemini API
+    const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
+    const prompt = `As an expert auto mechanic, analyze this vehicle problem:
+    
+    Vehicle: ${vehicleInfo.year} ${vehicleInfo.make} ${vehicleInfo.model}
+    Mileage: ${vehicleInfo.mileage || 'Unknown'}
+    
+    Problem Description: ${problem}
+    
+    Provide:
+    1. Top 3 most likely causes (ordered by probability)
+    2. Recommended solutions for each
+    3. Urgency level (Low/Medium/High)
+    4. Estimated repair cost range in LKR
+    5. Whether temporary driving is possible`;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    setResult(text);
+  } catch (error) {
+    console.error('Gemini API Error:', error);
+    setResult(`Error: ${error.message}. Please try again or contact support.`);
+  } finally {
+    setLoading(false);
+  }
+};
 
 export function DiagnosticForm({ setResult, setLoading }) {
   const [problem, setProblem] = useState('')

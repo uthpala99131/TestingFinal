@@ -50,7 +50,7 @@ const BookingsTable = () => {
             <th className="px-6 py-3">User Email</th>
             <th className="px-6 py-3">Vehicle</th>
             <th className="px-6 py-3">Service</th>
-            <th className="px-6 py-3">Status</th>
+         
             <th className="px-6 py-3">Price</th>
             <th className="px-6 py-3">Created At</th>
             <th className="px-6 py-3">Updated At</th>
@@ -64,7 +64,7 @@ const BookingsTable = () => {
               <td className="px-6 py-4">{booking.user?.email || 'N/A'}</td>
               <td className="px-6 py-4">{booking.vehicleName}</td>
               <td className="px-6 py-4">{booking.serviceType}</td>
-              <td className="px-6 py-4">{booking.status}</td>
+            
               <td className="px-6 py-4">Rs. {booking.price.toFixed(2)}</td>
               <td className="px-6 py-4">{new Date(booking.createdAt).toLocaleString()}</td>
               <td className="px-6 py-4">{new Date(booking.updatedAt).toLocaleString()}</td>

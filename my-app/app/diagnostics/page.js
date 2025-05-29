@@ -25,7 +25,7 @@ export default function DiagnosticsPage() {
         
         {result && (
           <div className="bg-white text-black p-6 rounded-lg shadow-lg">
-            <DiagnosticResult result={result} />
+            <DiagnosticResult result={result}  />
           </div>
         )}
       </div>

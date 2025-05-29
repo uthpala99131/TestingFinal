@@ -168,22 +168,7 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
               className="w-full px-3 py-2 border rounded-lg"
             ></textarea>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Future services</label>
-            <textarea
-              name="technicianReview"
-              value={formData.technicianReview}
-              onChange={handleChange}
-              className="w-full px-3 py-1 border rounded-lg"
-            ></textarea>
-            <textarea
-              name="technicianReview"
-              value={formData.technicianReview}
-              onChange={handleChange}
-              className="w-full px-3 py-1 border rounded-lg"
-            ></textarea>
-            
-          </div>
+          
           <div className="flex justify-end space-x-2">
             <button
               type="button"
