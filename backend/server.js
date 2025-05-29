@@ -11,6 +11,7 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
 const technicianRoutes = require('./routes/technicianRoutes');
 const sparePartRoutes = require('./routes/sparePartRoutes');
+const jobRoutes = require('./routes/jobRoutes');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/technicians', technicianRoutes);
 app.use('/api/spareparts', sparePartRoutes);
+app.use('/api/jobs', jobRoutes);
 
 // DB Connection
 mongoose.connect(process.env.MONGO_URI)
