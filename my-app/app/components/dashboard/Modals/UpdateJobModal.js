@@ -124,7 +124,7 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
             </select>
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Spare Part Price (₹)</label>
+            <label className="block text-sm font-medium mb-1">Spare Part Price (Rs)</label>
             <input
               type="number"
               name="sparePartPrice"
@@ -160,7 +160,7 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Technician Salary (₹)</label>
+            <label className="block text-sm font-medium mb-1">Technician Salary (Rs)</label>
             <input
               type="number"
               name="technicianSalary"
