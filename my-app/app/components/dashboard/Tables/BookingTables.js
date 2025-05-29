@@ -8,8 +8,8 @@ const BookingsTable = () => {
     ];
   
     return (
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white">
+      <div className="overflow-x-auto ">
+        <table className="min-w-full  bg-white">
           <thead className="text-white bg-black">
             <tr>
               <th className="px-4 py-3 text-left">ID</th>
