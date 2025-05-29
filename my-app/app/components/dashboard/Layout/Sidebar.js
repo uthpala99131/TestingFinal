@@ -8,9 +8,9 @@ const Sidebar = () => {
   const menuItems = [
     { name: 'Dashboard', path: '/dashboard', icon: '📊' },
     { name: 'Bookings', path: '/dashboard/bookings', icon: '📅' },
-    { name: 'Messages', path: '/dashboard/messages', icon: '✉️' },
-    { name: 'Revenue', path: '/dashboard/revenue', icon: '💰' },
-    { name: 'Notifications', path: '/dashboard/notifications', icon: '🔔' },
+    { name: 'Technician', path: '/dashboard/technician', icon: '✉️' },
+    { name: 'Spare Parts', path: '/dashboard/revenue', icon: '💰' },
+    { name: 'Services', path: '/dashboard/notifications', icon: '🔔' },
     { name: 'Jobs', path: '/dashboard/jobs', icon: '🔧' },
     { name: 'Settings', path: '/dashboard/settings', icon: '⚙️' },
   ];

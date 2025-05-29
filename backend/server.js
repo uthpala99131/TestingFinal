@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const serviceRoutes = require('./routes/serviceRoutes');
+const technicianRoutes = require('./routes/technicianRoutes');
 
 const app = express();
 
@@ -25,6 +26,7 @@ const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/services', serviceRoutes);
+app.use('/api/technicians', technicianRoutes);
 
 // DB Connection
 mongoose.connect(process.env.MONGO_URI)
