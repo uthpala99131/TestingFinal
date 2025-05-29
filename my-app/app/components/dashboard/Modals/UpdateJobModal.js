@@ -124,7 +124,7 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
             </select>
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Spare Part Price (₹)</label>
+            <label className="block text-sm font-medium mb-1">Spare Part Price (Rs)</label>
             <input
               type="number"
               name="sparePartPrice"
@@ -160,16 +160,6 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Technician Salary (₹)</label>
-            <input
-              type="number"
-              name="technicianSalary"
-              value={formData.technicianSalary}
-              readOnly
-              className="w-full px-3 py-2 border rounded-lg bg-gray-100"
-            />
-          </div>
-          <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Technician Review</label>
             <textarea
               name="technicianReview"
@@ -177,6 +167,22 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg"
             ></textarea>
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Future services</label>
+            <textarea
+              name="technicianReview"
+              value={formData.technicianReview}
+              onChange={handleChange}
+              className="w-full px-3 py-1 border rounded-lg"
+            ></textarea>
+            <textarea
+              name="technicianReview"
+              value={formData.technicianReview}
+              onChange={handleChange}
+              className="w-full px-3 py-1 border rounded-lg"
+            ></textarea>
+            
           </div>
           <div className="flex justify-end space-x-2">
             <button

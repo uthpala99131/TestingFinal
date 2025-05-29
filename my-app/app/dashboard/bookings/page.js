@@ -39,9 +39,9 @@ const BookingsTable = () => {
     <div className="overflow-x-auto">
       <div className="flex">
       <Sidebar />
-      <div className="flex-1 ml-64">
-        <Topbar />
-      
+      <div className="flex-1 pt-20 sm:pt-25 ml-64">
+       
+
       <table className="min-w-full text-sm text-left text-gray-700">
         <thead className="text-xs text-gray-700 uppercase bg-gray-200">
           <tr>

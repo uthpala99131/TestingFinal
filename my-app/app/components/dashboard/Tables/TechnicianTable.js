@@ -19,7 +19,7 @@ const TechnicianTable = ({ technicians }) => {
               <tr key={index} className="border-t">
                 <td className="py-2 px-4">{technician.name}</td>
                 <td className="py-2 px-4">{technician.phoneNum}</td>
-                <td className="py-2 px-4">${technician.salary}</td>
+                <td className="py-2 px-4">Rs.{technician.salary}</td>
                 <td className="py-2 px-4">
                   <button className="text-red-500 hover:text-red-700">Delete</button>
                 </td>

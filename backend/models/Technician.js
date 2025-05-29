@@ -13,7 +13,7 @@ const TechnicianSchema = new mongoose.Schema({
     required: [true, 'Phone number is required'],
     trim: true,
     unique: true,
-    match: [/^\+?[1-9]\d{1,14}$/, 'Please enter a valid phone number']
+  
   },
   salary: {
     type: Number,

@@ -17,7 +17,7 @@ const SparePartTable = ({ spareParts }) => {
             spareParts.map((sparePart, index) => (
               <tr key={index} className="border-t">
                 <td className="py-2 px-4">{sparePart.name}</td>
-                <td className="py-2 px-4">${sparePart.price}</td>
+                <td className="py-2 px-4">Rs.{sparePart.price}</td>
                 <td className="py-2 px-4">
                   <button className="text-red-500 hover:text-red-700">Delete</button>
                 </td>
