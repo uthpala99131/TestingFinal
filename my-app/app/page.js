@@ -56,7 +56,7 @@ export default function Home() {
         </motion.p>
 
         {/* Action Button */}
-        <Link href="/jobcard" passHref>
+        <Link href="/services" passHref>
           <motion.button
             whileHover={{ scale: 1.1, rotate: -5 }}
             whileTap={{ scale: 0.95 }}

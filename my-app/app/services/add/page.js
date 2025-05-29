@@ -89,65 +89,67 @@ export default function AddBookingForm() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 mt-20 bg-white rounded-md shadow-md text-black ">
-      <h2 className="text-2xl font-bold mb-4 text-red-600">Book a Service</h2>
-      {error && <p className="mb-4 text-red-500">{error}</p>}
+    <div className="min-h-screen p-30 bg-black"> {/* Added black background for the entire page */}
+      <div className="max-w-xl mx-auto pt-6 p-6  bg-white rounded-md shadow-md text-black">
+        <h2 className="text-2xl font-bold mb-4 text-center text-red-600">Book a Service</h2>
+        {error && <p className="mb-4 text-red-500">{error}</p>}
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block font-medium mb-1">Customer Name</label>
-          <input
-            type="text"
-            name="cus_name"
-            value={formData.cus_name}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded"
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block font-medium mb-1">Customer Name</label>
+            <input
+              type="text"
+              name="cus_name"
+              value={formData.cus_name}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded"
+            />
+          </div>
 
-        <div className="mb-4">
-          <label className="block font-medium mb-1">Vehicle Name</label>
-          <input
-            type="text"
-            name="vehicleName"
-            value={formData.vehicleName}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded"
-          />
-        </div>
+          <div className="mb-4">
+            <label className="block font-medium mb-1">Vehicle Name</label>
+            <input
+              type="text"
+              name="vehicleName"
+              value={formData.vehicleName}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded"
+            />
+          </div>
 
-        <div className="mb-4">
-          <label className="block font-medium mb-1">Service Type</label>
-          <input
-            type="text"
-            name="serviceType"
-            value={formData.serviceType}
-            readOnly
-            className="w-full px-3 py-2 border border-gray-300 rounded bg-gray-100"
-          />
-        </div>
+          <div className="mb-4">
+            <label className="block font-medium mb-1">Service Type</label>
+            <input
+              type="text"
+              name="serviceType"
+              value={formData.serviceType}
+              readOnly
+              className="w-full px-3 py-2 border border-gray-300 rounded bg-gray-100"
+            />
+          </div>
 
-        <div className="mb-6">
-          <label className="block font-medium mb-1">Price</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            readOnly
-            className="w-full px-3 py-2 border border-gray-300 rounded bg-gray-100"
-          />
-        </div>
+          <div className="mb-6">
+            <label className="block font-medium mb-1">Price</label>
+            <input
+              type="number"
+              name="price"
+              value={formData.price}
+              readOnly
+              className="w-full px-3 py-2 border border-gray-300 rounded bg-gray-100"
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-        >
-          {loading ? "Booking..." : "Confirm Booking"}
-        </button>
-      </form>
+          <button
+            type="submit"
+            disabled={loading}
+            className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+          >
+            {loading ? "Booking..." : "Confirm Booking"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
