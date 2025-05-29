@@ -1,5 +1,4 @@
-// components/dashboard/Modals/UpdateJobModal.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const UpdateJobModal = ({ job, onClose, onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -12,8 +11,64 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
     technicianReview: job?.technicianReview || ''
   });
 
+  const [spareParts, setSpareParts] = useState([]); // State to hold spare parts data
+  const [technicians, setTechnicians] = useState([]); // State to hold technicians data
+
+  // Fetch spare parts from the backend
+  useEffect(() => {
+    const fetchSpareParts = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/spareparts');
+        const data = await response.json();
+        setSpareParts(data.data); // Assuming the backend returns data in this format
+      } catch (error) {
+        console.error('Error fetching spare parts:', error);
+      }
+    };
+    fetchSpareParts();
+  }, []);
+
+  // Fetch technicians from the backend
+  useEffect(() => {
+    const fetchTechnicians = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/technicians');
+        const data = await response.json();
+        setTechnicians(data.data); // Assuming the backend returns data in this format
+      } catch (error) {
+        console.error('Error fetching technicians:', error);
+      }
+    };
+    fetchTechnicians();
+  }, []);
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    // Automatically set the spare part price if a spare part is selected
+    if (name === 'sparePartName') {
+      const selectedSparePart = spareParts.find((part) => part.name === value);
+      setFormData((prev) => ({
+        ...prev,
+        sparePartName: value,
+        sparePartPrice: selectedSparePart ? selectedSparePart.price : ''
+      }));
+    }
+    // Automatically fill technician details if a technician is selected
+    else if (name === 'technicianName') {
+      const selectedTechnician = technicians.find((tech) => tech.name === value);
+      setFormData((prev) => ({
+        ...prev,
+        technicianName: value,
+        technicianPhone: selectedTechnician ? selectedTechnician.phoneNum : '',
+        technicianSalary: selectedTechnician ? selectedTechnician.salary : ''
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -54,13 +109,19 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Spare Part Name</label>
-            <input
-              type="text"
+            <select
               name="sparePartName"
               value={formData.sparePartName}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg"
-            />
+            >
+              <option value="">Select Spare Part</option>
+              {spareParts.map((part) => (
+                <option key={part._id} value={part.name}>
+                  {part.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Spare Part Price (₹)</label>
@@ -68,19 +129,25 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
               type="number"
               name="sparePartPrice"
               value={formData.sparePartPrice}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg"
+              readOnly
+              className="w-full px-3 py-2 border rounded-lg bg-gray-100"
             />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Technician Name</label>
-            <input
-              type="text"
+            <select
               name="technicianName"
               value={formData.technicianName}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg"
-            />
+            >
+              <option value="">Select Technician</option>
+              {technicians.map((tech) => (
+                <option key={tech._id} value={tech.name}>
+                  {tech.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Technician Phone</label>
@@ -88,8 +155,8 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
               type="text"
               name="technicianPhone"
               value={formData.technicianPhone}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg"
+              readOnly
+              className="w-full px-3 py-2 border rounded-lg bg-gray-100"
             />
           </div>
           <div className="mb-4">
@@ -98,8 +165,8 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
               type="number"
               name="technicianSalary"
               value={formData.technicianSalary}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg"
+              readOnly
+              className="w-full px-3 py-2 border rounded-lg bg-gray-100"
             />
           </div>
           <div className="mb-4">
