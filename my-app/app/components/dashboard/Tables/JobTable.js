@@ -11,7 +11,7 @@ const JobTable = ({ jobs, onDelete, onUpdate }) => {
             <th className="py-2 px-4 text-left">Vehicle Name</th>
             <th className="py-2 px-4 text-left">Service Type</th>
             <th className="py-2 px-4 text-left">Status</th>
-            <th className="py-2 px-4 text-left">Price (₹)</th>
+            <th className="py-2 px-4 text-left">Price (Rs)</th>
             <th className="py-2 px-4 text-left">Actions</th>
           </tr>
         </thead>
@@ -23,7 +23,7 @@ const JobTable = ({ jobs, onDelete, onUpdate }) => {
                 <td className="py-2 px-4">{job.vehicleName}</td>
                 <td className="py-2 px-4">{job.serviceType}</td>
                 <td className="py-2 px-4">{job.status}</td>
-                <td className="py-2 px-4">₹{job.price}</td>
+                <td className="py-2 px-4">Rs.{job.price}</td>
                 <td className="py-2 px-4 space-x-2">
                   <button
                     className="px-3 py-1 text-sm text-white transition-colors bg-blue-500 rounded hover:bg-blue-600"
