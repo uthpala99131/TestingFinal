@@ -32,8 +32,11 @@ export default function Services() {
       <Navbar />
 
       <main className="flex-grow w-full px-4 mx-auto pb-15 pt-28 sm:px-6 lg:px-8 max-w-7xl">
-        <h2 className="mb-12 text-4xl font-extrabold text-center text-red-600">
+        <h2 className="mb-4 text-4xl font-extrabold text-center text-red-600">
           Our Services
+        </h2>
+        <h2 className="mb-8 text-1xl  text-center text-white-600">
+           Book your Service
         </h2>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
