@@ -5,13 +5,14 @@ import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
 
 const services = [
+  { title: "Recovery", desc: "24/7 towing and roadside assistance for emergencies." },
   { title: "Engine Diagnostics", desc: "Advanced computer diagnostics to find issues fast." },
   { title: "Oil & Filter Change", desc: "Keep your car running smooth and clean." },
   { title: "Brake Repair", desc: "Top-quality brake service for safety and performance." },
   { title: "Battery Replacement", desc: "Quick and reliable battery change for any model." },
   { title: "AC Repair", desc: "Stay cool with our efficient air conditioning service." },
   { title: "Tire Services", desc: "Rotation, balancing, and new tire installation." },
-  { title: "Recovery", desc: "24/7 towing and roadside assistance for emergencies." },
+ 
   { title: "Basic Maintenance", desc: "Routine maintenance to extend your vehicle's life." },
   { title: "Full Service", desc: "Comprehensive inspection and full system checks." },
   { title: "Engine Tune-Up", desc: "Boost performance with our expert engine tune-up." },
