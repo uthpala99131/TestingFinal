@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <div className='relative flex items-center justify-center h-screen overflow-hidden text-white bg-gradient-to-r from-blue-900 via-black to-red-600'>
 
-      <section className="relative flex items-center justify-center h-screen overflow-hidden text-white bg-gradient-to-r from-blue-900 via-black to-red-600">
+  
     
-      <div className="absolute inset-0 z-0 p-15">
+      <div className="absolute inset-0 z-0 pt-15">
         <Image 
           src="/car1.png"
           alt="Auto Repair Service"
@@ -83,7 +83,7 @@ export default function Home() {
         />
       </motion.div>
       <ChatBot/>
-    </section>
+  
     </div>
   );
 }
