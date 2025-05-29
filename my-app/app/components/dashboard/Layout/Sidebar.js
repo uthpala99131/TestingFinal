@@ -10,7 +10,7 @@ const Sidebar = () => {
     { name: 'Bookings', path: '/dashboard/bookings', icon: '📅' },
     { name: 'Technician', path: '/dashboard/technician', icon: '✉️' },
     { name: 'Spare Parts', path: '/dashboard/spareparts', icon: '💰' },
-    { name: 'Services', path: '/dashboard/notifications', icon: '🔔' },
+    { name: 'Services', path: '/dashboard/service', icon: '🔔' },
     { name: 'Jobs', path: '/dashboard/jobs', icon: '🔧' },
     { name: 'Settings', path: '/dashboard/settings', icon: '⚙️' },
   ];
