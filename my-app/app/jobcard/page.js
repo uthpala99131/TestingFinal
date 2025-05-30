@@ -1,4 +1,4 @@
-// components/dashboard/Pages/JobPage.js
+
 "use client";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -211,6 +211,14 @@ const JobPage = () => {
                         <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Service Notes</h3>
                         <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                           <p className="text-gray-700 text-sm italic">&quot;{job.technicianReview}&quot;</p>
+                        </div>
+                      </div>
+                    )}
+                    {job.futureServices && (
+                      <div className="mb-4">
+                        <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Future Services</h3>
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                          <p className="text-gray-700 text-sm italic">&quot;{job.futureServices}&quot;</p>
                         </div>
                       </div>
                     )}

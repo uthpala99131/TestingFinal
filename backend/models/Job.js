@@ -56,6 +56,11 @@ const JobSchema = new mongoose.Schema({
     trim: true,
     maxlength: [200, 'Review cannot be more than 200 characters']
   },
+  futureServices: {
+    type: String,
+    trim: true,
+    maxlength: [200, 'Review cannot be more than 200 characters']
+  },
   createdAt: {
     type: Date,
     default: Date.now

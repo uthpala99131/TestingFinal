@@ -8,19 +8,19 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
     technicianName: job?.technicianName || '',
     technicianPhone: job?.technicianPhone || '',
     technicianSalary: job?.technicianSalary || '',
-    technicianReview: job?.technicianReview || ''
+    technicianReview: job?.technicianReview || '',
+    futureServices: job?.futureServices || ''
   });
 
-  const [spareParts, setSpareParts] = useState([]); // State to hold spare parts data
-  const [technicians, setTechnicians] = useState([]); // State to hold technicians data
+  const [spareParts, setSpareParts] = useState([]);
+  const [technicians, setTechnicians] = useState([]);
 
-  // Fetch spare parts from the backend
   useEffect(() => {
     const fetchSpareParts = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/spareparts');
         const data = await response.json();
-        setSpareParts(data.data); // Assuming the backend returns data in this format
+        setSpareParts(data.data);
       } catch (error) {
         console.error('Error fetching spare parts:', error);
       }
@@ -28,13 +28,12 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
     fetchSpareParts();
   }, []);
 
-  // Fetch technicians from the backend
   useEffect(() => {
     const fetchTechnicians = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/technicians');
         const data = await response.json();
-        setTechnicians(data.data); // Assuming the backend returns data in this format
+        setTechnicians(data.data);
       } catch (error) {
         console.error('Error fetching technicians:', error);
       }
@@ -45,7 +44,6 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Automatically set the spare part price if a spare part is selected
     if (name === 'sparePartName') {
       const selectedSparePart = spareParts.find((part) => part.name === value);
       setFormData((prev) => ({
@@ -54,7 +52,6 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
         sparePartPrice: selectedSparePart ? selectedSparePart.price : ''
       }));
     }
-    // Automatically fill technician details if a technician is selected
     else if (name === 'technicianName') {
       const selectedTechnician = technicians.find((tech) => tech.name === value);
       setFormData((prev) => ({
@@ -80,16 +77,16 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
         body: JSON.stringify(formData)
       });
       const updatedJob = await response.json();
-      onUpdate(updatedJob.data); // Pass the updated job back to the parent
+      onUpdate(updatedJob.data);
     } catch (error) {
       console.error('Error updating job:', error);
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex items-center justify-center z-50 overflow-auto">
       <div className="absolute inset-0 bg-black opacity-50"></div>
-      <div className="bg-white p-6 rounded-lg shadow-lg z-10 w-96">
+      <div className="bg-white p-6 rounded-lg shadow-lg z-10 w-96 max-h-[90vh] overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Update Job</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -160,16 +157,37 @@ const UpdateJobModal = ({ job, onClose, onUpdate }) => {
             />
           </div>
           <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Technician Salary</label>
+            <input
+              type="text"
+              name="technicianSalary"
+              value={formData.technicianSalary}
+              readOnly
+              className="w-full px-3 py-2 border rounded-lg bg-gray-100"
+            />
+          </div>
+          <div className="mb-4">
             <label className="block text-sm font-medium mb-1">Technician Review</label>
             <textarea
               name="technicianReview"
               value={formData.technicianReview}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg"
+              rows="4"
+            ></textarea>
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-1">Future Services</label>
+            <textarea
+              name="futureServices"
+              value={formData.futureServices}
+              onChange={handleChange}
+              className="w-full px-2 py-2 border rounded-lg"
+              rows="4"
             ></textarea>
           </div>
           
-          <div className="flex justify-end space-x-2">
+          <div className="flex justify-end space-x-2 sticky bottom-0 bg-white py-2">
             <button
               type="button"
               onClick={onClose}

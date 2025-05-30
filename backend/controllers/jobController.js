@@ -20,7 +20,8 @@ exports.createJob = asyncHandler(async (req, res) => {
     technicianName,
     technicianPhone,
     technicianSalary,
-    technicianReview
+    technicianReview,
+    futureServices
   } = req.body;
 
   const job = await Job.create({
@@ -34,7 +35,8 @@ exports.createJob = asyncHandler(async (req, res) => {
     technicianName,
     technicianPhone,
     technicianSalary,
-    technicianReview
+    technicianReview,
+    futureServices
   });
 
   res.status(201).json({
@@ -112,7 +114,7 @@ exports.updateJob = asyncHandler(async (req, res) => {
   job.technicianPhone = req.body.technicianPhone || job.technicianPhone;
   job.technicianSalary = req.body.technicianSalary || job.technicianSalary;
   job.technicianReview = req.body.technicianReview || job.technicianReview;
-
+  job.futureServices = req.body.futureServices || job.futureServices;
   const updatedJob = await job.save();
 
   res.status(200).json({
