@@ -9,7 +9,7 @@ export default function DiagnosticsPage() {
 
   return (
     <div className="min-h-screen bg-black pt-25 text-white p-6">
-      <h1 className="text-3xl font-bold mb-8 text-center text-red-500">AI Suuport For Vehicle Problem Diagnostics</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center text-red-500">AI Support For Vehicle Problem Diagnostics</h1>
       
       <div className="max-w-3xl mx-auto">
         <div className="bg-white text-black p-6 rounded-lg shadow-lg mb-8">
